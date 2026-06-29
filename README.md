@@ -177,7 +177,7 @@ Sample entries from `GET /log`:
 
 **Where the spec helped:** Writing out the three label variants in `planning.md` before building forced a real design decision early. When it came time to implement `get_label()`, the function was trivial to write because the exact strings already existed. Without that step, it would have been easy to write placeholder text and never revisit it.
 
-**Where implementation matched the spec exactly:** The 70/30 weighting and asymmetric thresholds were defined in planning and implemented without change. The confidence scores on the test inputs fell where the spec predicted they would, which validated the calibration approach.
+**Where implementation diverged:** The planning doc laid out a milestone-by-milestone build order — submission endpoint first, then signal 1, then signal 2, then the production layer. In practice, once signal 1 was working I found it easier to implement signal 2 and the confidence scoring logic at the same time rather than treating them as separate steps. The appeals endpoint and audit log also ended up being built together since they share the same log file. The final system matches the spec, but the order of construction was more iterative than the plan suggested.
 
 ---
 
